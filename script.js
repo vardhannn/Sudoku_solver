@@ -193,4 +193,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return false;
     }
+
+    const resetButton = document.getElementById('reset');
+    resetButton.addEventListener('click', () => {
+        cells.forEach(cell => {
+            cell.value = '';
+        });
+    });
+
+
+
 });
