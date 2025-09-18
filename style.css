@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #bab2b2;
+}
+
+h1 {
+    margin: 0;
+    padding: 10px;
+    text-shadow: 5px, 5px, 4px, #bc0000;
+    color: #ffffff;
+}
+
+h2 {
+    color: #484848;
+}
+.header{
+    background-color: #666;
+    margin: 0;
+    padding: 5vh;
+}
+button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+.button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+.srb{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#solve{
+    margin-right: 50px;
+}
+#reset{
+    background-color: #bc0000;
+}
+#reset:hover{
+    background-color: #a00000;
+}
+button:hover {
+    background-color: #45a049;
+}
+
+/* Sudoku grid styling */
+#sudoku-grid-container {
+    display: none;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    width: 270px;
+    height: 270px;
+}
+
+.sudoku-cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #999;
+    font-size: 24px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.sudoku-cell:nth-child(3n){
+    border-right: 2px solid #000;
+}
+.sudoku-cell:nth-child(27n+9),
+.sudoku-cell:nth-child(27n+8),
+.sudoku-cell:nth-child(27n+7),
+.sudoku-cell:nth-child(27n+6),
+.sudoku-cell:nth-child(27n+5),
+.sudoku-cell:nth-child(27n+4),
+.sudoku-cell:nth-child(27n+3),
+.sudoku-cell:nth-child(27n+2),
+.sudoku-cell:nth-child(27n+1){
+    border-top: 2px solid #000;
+}
+.sudoku-cell:nth-child(9n+1){
+    border-left: 2px solid #000;
+
+}
+.sudoku-cell:nth-child(9n+4),
+.sudoku-cell:nth-child(9n+5),
+.sudoku-cell:nth-child(9n+6){
+    background-color: #d2d2d2;
+}
+.sudoku-cell:nth-child(n + 28):nth-child(-n + 54) {
+    background-color: #d2d2d2; /* A light blue color */
+}
+.sudoku-cell:nth-child(n + 28):nth-child(-n + 54):nth-child(9n + 4),
+.sudoku-cell:nth-child(n + 28):nth-child(-n + 54):nth-child(9n + 5),
+.sudoku-cell:nth-child(n + 28):nth-child(-n + 54):nth-child(9n + 6) {
+    background-color: #ffffff;
+}
+.sudoku-cell:nth-last-child(-n + 9) {
+    border-bottom: 2px solid #000;
+}
