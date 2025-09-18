@@ -7,27 +7,60 @@ document.addEventListener('DOMContentLoaded', () => {
         myButton.style.display = 'none';
         gridContainer.style.display = 'grid';
         srb.style.display = 'flex';
+        for (let i = 0; i < 81; i++) {
+            const cell = document.createElement('input');
+            cell.classList.add('sudoku-cell');
+            cell.type = 'text';
+            cell.maxLength = 1;
+            cell.pattern = "[1-9]";
+            cell.title = "Enter a digit from 1 to 9";
+            cell.addEventListener('input', (event) => {
+                const value = event.target.value;
+                if (value && !/^[1-9]$/.test(value)) {
+                    event.target.value = '';
+                }
+            });
+            
+            gridContainer.appendChild(cell);
+        }
+        cells = document.querySelectorAll('.sudoku-cell');
+        addNavigationListeners(cells);
     })
 
-    for (let i = 0; i < 81; i++) {
-        const cell = document.createElement('input');
-        cell.classList.add('sudoku-cell');
-        cell.type = 'text';
-        cell.maxLength = 1;
-        cell.pattern = "[1-9]";
-        cell.title = "Enter a digit from 1 to 9";
-        cell.addEventListener('input', (event) => {
-            const value = event.target.value;
-            if (value && !/^[1-9]$/.test(value)) {
-                event.target.value = '';
-            }
-        });
-        
-        gridContainer.appendChild(cell);
-    }
+    function addNavigationListeners(cells) {
+        cells.forEach((cell, index) => {
+            cell.addEventListener('keydown', (e) => {
+                let newIndex = index;
+                // Handle arrow key navigation
+                switch (e.key) {
+                    case 'ArrowUp':
+                        newIndex = index - 9;
+                        break;
+                    case 'ArrowDown':
+                        newIndex = index + 9;
+                        break;
+                    case 'ArrowLeft':
+                        newIndex = index - 1;
+                        break;
+                    case 'ArrowRight':
+                        newIndex = index + 1;
+                        break;
+                    default:
+                        return; // Do nothing for other keys
+                }
 
-    const solveButton = document.getElementById('solve');
-    const cells = document.querySelectorAll('.sudoku-cell');
+                // Prevent default arrow key behavior (scrolling)
+                e.preventDefault();
+
+                // Check if the new index is valid and focus the new cell
+                if (newIndex >= 0 && newIndex < 81) {
+                    cells[newIndex].focus();
+                }
+            });
+        });
+    }
+    
+        const solveButton = document.getElementById('solve');
     
     // Add a click event listener to the solve button
     solveButton.addEventListener('click', () => {
@@ -200,7 +233,5 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.value = '';
         });
     });
-
-
 
 });
